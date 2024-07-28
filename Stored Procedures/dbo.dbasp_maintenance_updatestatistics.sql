@@ -12,7 +12,7 @@ GO
 --	@IgnoreStatsUpdatedInLastXHours:	Ignore updating stats if last update is for last @IgnoreStatsUpdatedInLastXHours hours
 --	@UnusedStatTresholdInDays:			Ignore updating stats if last update of that index is latest than @UnusedStatTresholdInDays days
 -- =============================================
-CREATE PROCEDURE [dbo].[dbasp_maintenance_updatestatistics]
+ALTER PROCEDURE [dbo].[dbasp_maintenance_updatestatistics]
 	@DatabaseNames NVARCHAR(MAX) = N'<ALL_USER_DATABASES>',
 	@IgnoreStatsUpdatedInLastXHours INT = 6,
 	@UnusedStatTresholdInDays INT=32,
@@ -154,7 +154,7 @@ EXEC sp_addextendedproperty N'Author', N'Siavash Golchoobian', 'SCHEMA', N'dbo',
 GO
 EXEC sp_addextendedproperty N'Created Date', N'2015-01-21', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_updatestatistics', NULL, NULL
 GO
-EXEC sp_addextendedproperty N'Modified Date', N'2020-04-01', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_updatestatistics', NULL, NULL
+EXEC sp_addextendedproperty N'Modified Date', N'2023-04-23', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_updatestatistics', NULL, NULL
 GO
-EXEC sp_addextendedproperty N'Version', N'3.0.1.0', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_updatestatistics', NULL, NULL
+EXEC sp_addextendedproperty N'Version', N'3.0.1.1', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_updatestatistics', NULL, NULL
 GO

@@ -1,9 +1,4 @@
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_NULLS ON
-GO
-
-
+-- Stored Procedure
 
 -- =============================================
 -- Author:		<Golchoobian>
@@ -56,7 +51,7 @@ BEGIN
 		DECLARE @myErrorState int
 		SET @myErrorMessage=@AlertType + N' on ' + CAST(@myAlertTime AS NVARCHAR(50)) + @myNewLine+ + CAST(@AlertText AS NVARCHAR(3600))
 		SET @myErrorState=1
-			
+
 		RAISERROR (
 			@myErrorMessage, -- Message text.
 			11 ,--@ErrorSeverity, -- Severity.
@@ -87,7 +82,12 @@ BEGIN
 			@myAlertTime AS AkerTime;
 	END
 
-	IF @EmailAlert=1 AND @MailList IS NOT NULL
+	IF @EmailAlert = 1
+       AND @MailList IS NOT NULL
+       AND EXISTS (SELECT 1
+                   FROM   [master].[sys].[configurations]
+                   WHERE  [name] = 'Database Mail XPs'
+                          AND CAST ([value_in_use] AS INT) = 1)
 	BEGIN
 		DECLARE @EmailMessage NVARCHAR(MAX)
 		SET @EmailMessage =
@@ -103,6 +103,8 @@ BEGIN
 END
 
 GO
+-- Extended Properties
+
 EXEC sp_addextendedproperty N'Author', N'Siavash Golchoobian', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_alert_event', NULL, NULL
 GO
 EXEC sp_addextendedproperty N'Created Date', N'2017-03-13', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_alert_event', NULL, NULL

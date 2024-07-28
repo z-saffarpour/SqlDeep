@@ -1,8 +1,4 @@
-SET QUOTED_IDENTIFIER ON
-GO
-SET ANSI_NULLS ON
-GO
-
+-- Stored Procedure
 
 -- =============================================
 -- Author:		<Golchoobian>
@@ -69,7 +65,7 @@ BEGIN
 				) WITH LOG;
 		END
 
-	IF @EmailError=1 AND @MailTo IS NOT NULL
+	IF @EmailError=1 AND @MailTo IS NOT NULL AND EXISTS (SELECT 1 FROM sys.configurations WHERE NAME = 'Database Mail XPs' AND CAST ([value_in_use] AS INT) = 1)
 		BEGIN
 			DECLARE @EmailMessage nvarchar(4000)
 			SET @EmailMessage =
@@ -88,7 +84,10 @@ BEGIN
 				@body = @EmailMessage
 		END
 END
+
 GO
+-- Extended Properties
+
 EXEC sp_addextendedproperty N'Author', N'Siavash Golchoobian', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_get_error_info', NULL, NULL
 GO
 EXEC sp_addextendedproperty N'Created Date', N'2015-01-21', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_get_error_info', NULL, NULL

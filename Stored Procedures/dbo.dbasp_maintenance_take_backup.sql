@@ -18,7 +18,7 @@ GO
 --	@BackupFileNamingType:		'DATE' or 'DATETIME' or 'JDATE' or 'JDATETIME', if 'DATETIME' is used, this SP will add #Time value to backup file name else only use #Date value for backup file name. JDATE and JDATETIME is same as DAT and DATETIME rule but use Jalali calendar instead of Gregorian calendar
 --	@PrintOnly:					0 or 1
 -- =============================================
-CREATE PROCEDURE [dbo].[dbasp_maintenance_take_backup]
+ALTER PROCEDURE [dbo].[dbasp_maintenance_take_backup]
 	@DatabaseNames NVARCHAR(MAX) = N'<ALL_USER_DATABASES>',
 	@LocalDestinationPath NVARCHAR(MAX),
 	@BackupExtension NVARCHAR(3) = N'bak',
@@ -588,7 +588,7 @@ EXEC sp_addextendedproperty N'Author', N'Siavash Golchoobian', 'SCHEMA', N'dbo',
 GO
 EXEC sp_addextendedproperty N'Created Date', N'2015-01-25', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_take_backup', NULL, NULL
 GO
-EXEC sp_addextendedproperty N'Modified Date', N'2021-03-07', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_take_backup', NULL, NULL
+EXEC sp_addextendedproperty N'Modified Date', N'2022-12-19', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_take_backup', NULL, NULL
 GO
-EXEC sp_addextendedproperty N'Version', N'3.0.0.5', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_take_backup', NULL, NULL
+EXEC sp_addextendedproperty N'Version', N'3.0.0.6', 'SCHEMA', N'dbo', 'PROCEDURE', N'dbasp_maintenance_take_backup', NULL, NULL
 GO
